@@ -2,9 +2,10 @@
   "name": "placepro-evaluate-workspace",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "PlacePro Evaluate - Group Discussion & Interview Evaluation System",
   "scripts": {
-    "build": "npm --prefix backend install && npm --prefix frontend install && npm --prefix frontend run build",
+    "build": "node scripts/build.js",
     "start": "node backend/src/server.js",
     "dev": "npm --prefix frontend run dev",
     "dev:frontend": "npm --prefix frontend run dev",

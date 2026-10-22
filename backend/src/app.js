@@ -83,6 +83,8 @@ app.use('/api', errorHandler);
 
 // Serve frontend static build files (SPA client-side routing fallback)
 const possibleDistPaths = [
+  path.resolve(__dirname, '../public'),
+  path.resolve(process.cwd(), 'public'),
   path.resolve(__dirname, '../../frontend/dist'),
   path.resolve(__dirname, '../frontend/dist'),
   path.resolve(process.cwd(), 'frontend/dist'),
@@ -92,11 +94,14 @@ const possibleDistPaths = [
 const frontendDist = possibleDistPaths.find((p) => fs.existsSync(p));
 
 if (frontendDist) {
+  console.log(`[Static] Serving frontend from: ${frontendDist}`);
   app.use(express.static(frontendDist));
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api')) return next();
     res.sendFile(path.join(frontendDist, 'index.html'));
   });
+} else {
+  console.warn('[Static] No frontend dist folder found in:', possibleDistPaths);
 }
 
 // Fallback error handler
