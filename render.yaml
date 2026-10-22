@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: elesa
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        value: mongodb+srv://parthghogare0_db_user:3ydrYkHiEXWLNw48@cluster0.qs38rrp.mongodb.net/placepro?retryWrites=true&w=majority
+      - key: JWT_SECRET
+        value: placepro_evaluation_system_jwt_secret_key_2026
+      - key: CLIENT_URL
+        value: https://elesa.onrender.com

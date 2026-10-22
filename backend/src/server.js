@@ -12,7 +12,7 @@ const server = http.createServer(app);
 // Initialize Socket.IO for real-time live evaluations telemetry
 const io = new SocketIOServer(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: (origin, callback) => callback(null, true),
     methods: ['GET', 'POST', 'PATCH'],
     credentials: true,
   },
